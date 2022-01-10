@@ -1,3 +1,9 @@
 .App {
   text-align: center;
 }
+.country .card{
+  margin-bottom: 20px;
+}
+.country-wrapper {
+  margin-top: 40px;
+}
