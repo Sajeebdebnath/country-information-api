@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Country from "../components/Country";
-import { Container, Row } from "react-bootstrap";
+import { Container, Row, Form } from "react-bootstrap";
 
 const MainComponent = () => {
   useEffect(() => {
@@ -9,35 +9,48 @@ const MainComponent = () => {
       .then((data) => setCountries(data));
   }, []);
 
-  const [selected, setSelected] = useState([]);
-
-  const handleAddCountry = (country) => {
-    const newSelected = [...selected, country];
-    setSelected(newSelected);
-  };
+  const [searchItem, setSearchItem] = useState("");
 
   const [countrires, setCountries] = useState([]);
 
-  const country_info = countrires.map((country) => {
-    return (
-      <Country country={country} handleAddCountry={handleAddCountry}></Country>
-    );
-  });
-  const populations = selected.reduce(
-    (sum, country) => sum + country.population,
-    0
-  );
+  const country_info = countrires
+    .filter((country) => {
+      if (searchItem === " ") {
+        return country;
+      } else if (
+        country.name.common
+          .toLocaleLowerCase()
+          .includes(searchItem.toLocaleLowerCase())
+      ) {
+        return country;
+      }
+    })
+    .map((country) => {
+      return (
+        <Country
+          country={country}
+        ></Country>
+      );
+    });
 
-  const country_list = selected.map((country) => <p>{country.name.common}</p>);
+
   return (
     <div>
-      <h1>Country Information App</h1>
-      <h5>Number of Countries : {countrires.length}</h5>
-      {country_list}
-      <p>
-        {selected.length || 0} Countries are Selected and their total Population
-        is {populations || 0}{" "}
-      </p>
+      <Container>
+        <Row>
+          <h1>Countries of the World</h1>
+          <h5>Number of Countries : {country_info.length}</h5>
+          <Form>
+            <Form.Group>
+              <Form.Control
+                type="text"
+                onChange={(event) => setSearchItem(event.target.value)}
+                placeholder="Search Country.."
+              />
+            </Form.Group>
+          </Form>
+        </Row>
+      </Container>
 
       <div className="country-wrapper">
         <Container>
