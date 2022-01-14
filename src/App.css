@@ -7,3 +7,10 @@
 .country-wrapper {
   margin-top: 40px;
 }
+a.country_link {
+  text-decoration: none;
+}
+.item-heading{
+  text-align: left;
+  font-weight: 400;
+}
