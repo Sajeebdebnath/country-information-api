@@ -79,19 +79,6 @@ const CountryDetails = () => {
                     </Col>
 
                     <Col>
-                        <h3 className='item-heading'>Language</h3>
-                        <Table bordered>
-                            <tbody>
-                                <tr>
-                                    <th>Native Language</th>
-                                    <td>{countryDetails.languages?.ben}</td>
-                                </tr>
-                                <tr>
-                                    <th colSpan={2}>Official</th>
-                                </tr>
-                            </tbody>
-
-                        </Table>
                             <h3 className='item-heading'>Geography</h3>
                             <Table bordered>
                                 <tbody>
